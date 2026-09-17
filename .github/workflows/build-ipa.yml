@@ -51,13 +51,14 @@ jobs:
           cp -r build/HermesVoice.xcarchive/Products/Applications/HermesVoice.app \
             build/ipa/Payload/
           cd build/ipa
-          zip -r ../../HermesVoice-unsigned.ipa Payload
+          zip -r HermesVoice-unsigned.ipa Payload
+          mv HermesVoice-unsigned.ipa ../
           cd ../..
-          ls -la ios/HermesVoice/HermesVoice-unsigned.ipa
+          ls -la ios/HermesVoice/build/HermesVoice-unsigned.ipa
 
       - name: Upload IPA artifact
         uses: actions/upload-artifact@v4
         with:
           name: HermesVoice-unsigned-ipa
-          path: ios/HermesVoice/HermesVoice-unsigned.ipa
+          path: ios/HermesVoice/build/HermesVoice-unsigned.ipa
           retention-days: 30
